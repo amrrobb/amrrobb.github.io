@@ -18,3 +18,6 @@ body {
     padding: auto;
 }
 
+#card-list .row p{
+    margin-bottom: 0.25em;
+}

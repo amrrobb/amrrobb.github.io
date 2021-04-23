@@ -125,6 +125,7 @@ let productContainer    = document.getElementById('product-container')
 let mainContainer       = document.getElementById("main-container")
 let cartContainer       = document.getElementById("cart-container")
 let cartList            = document.getElementById("cart-list")
+let katCake            = document.getElementById("kat-cake")
 ////////////////////////////
 // Function 
 
@@ -326,7 +327,7 @@ function generateTransaction() {
     const object = listCart
     if (!Object.keys(object).length){
         //bikin alert di prompt
-        alert(`You haven't order any cake yet`)
+        alert(`You haven't transaction any cake yet`)
     } else {
         console.log(object)
     }

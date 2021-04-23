@@ -125,8 +125,6 @@ let productContainer    = document.getElementById('product-container')
 let mainContainer       = document.getElementById("main-container")
 let cartContainer       = document.getElementById("cart-container")
 let cartList            = document.getElementById("cart-list")
-
-mainContainer.style.display = 'none'
 ////////////////////////////
 // Function 
 
@@ -168,7 +166,7 @@ function generateCart() {
         //bikin alert di prompt
         alert(`You haven't choose any cake yet`)
     } else {
-        
+        mainContainer.style.display = 'none'
         productContainer.style.display = 'none'
         cartContainer.style.display = 'block'
 
@@ -336,7 +334,7 @@ function generateTransaction() {
 }
 
 function generateHome() {
-    // mainContainer.style.display = 'block'
+    mainContainer.style.display = 'block'
     productContainer.style.display = 'block'
     cartContainer.style.display = 'none'
     generateProduct(listCake)

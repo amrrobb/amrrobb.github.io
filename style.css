@@ -5,3 +5,22 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
+
+nav li {
+    font-weight: 600;
+}
+
+
+.card .img-box{
+    width: 100%;
+    height: 16rem;
+    /* display: flex; */
+}
+
+.card-body .card-text{
+    font-size: 0.75em;
+    height: 4.5em;
+    /* margin-bottom: ; */
+    padding: auto;
+}
+

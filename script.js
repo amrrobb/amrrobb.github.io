@@ -123,7 +123,8 @@ let listCart = {}
 
 let productContainer    = document.getElementById('product-container')
 let mainContainer       = document.getElementById("main-container")
-
+let cartContainer       = document.getElementById("cart-container")
+let cartList            = document.getElementById("cart-list")
 ////////////////////////////
 // Function 
 
@@ -133,10 +134,11 @@ function addToCart(object) {
     // let result = {}
     const name = object.name
     const price = object.price
+    const image = object.image
 
     if (listCart[name] === undefined){
         listCart[name] = {
-            price, quantity: 1
+            price, quantity: 1, image
         }
         // listCart.push(result)
     } else {
@@ -154,8 +156,6 @@ function addToCart(object) {
 // addToCart(listCake[1])
 // console.log(listCart);
 
-
-
 // DOM
 
 // Membuat cart
@@ -168,8 +168,155 @@ function generateCart() {
     } else {
         mainContainer.style.display = 'none'
         productContainer.style.display = 'none'
+        cartContainer.style.display = 'block'
 
         console.log(object)
+        
+        cartList.innerHTML = ''
+        // Bikin list cart
+        for (let key in object){
+            let divCart = document.createElement('div')
+            divCart.classList.add('card', 'mb-3')
+            divCart.style.maxWidth = '100%'
+            // console.log(divCart);
+
+            let div1 = document.createElement('div')
+            div1.classList.add('row', 'g-0')
+            divCart.appendChild(div1)
+
+            let divImg = document.createElement('div')
+            divImg.classList.add('col-md-4')
+            div1.appendChild(divImg)
+
+            let img = document.createElement('img')
+            img.src = object[key].image
+            img.classList.add("img-fluid")
+            img.style.height = 'auto'
+            divImg.appendChild(img)
+
+            let div2 = document.createElement('div')
+            div2.classList.add('col-md-8')
+            div1.appendChild(div2)
+
+            let divCard = document.createElement('div')
+            divCard.classList.add('card-body', "text-start")
+            div2.appendChild(divCard)
+
+            let h5 = document.createElement('h5')
+            h5.classList.add("card-title")
+            h5.innerHTML = key
+            divCard.appendChild(h5)
+
+            // console.log(divCard);
+
+            //// Price
+
+            let divRow = document.createElement('div')
+            divRow.classList.add('row')
+            divCard.appendChild(divRow)
+
+            let divCol1 = document.createElement('div')
+            divCol1.classList.add('col-lg-6', 'col-md-12', 'mt-2')
+            divRow.appendChild(divCol1)
+
+            let p = document.createElement("p")
+            p.innerHTML = "Price        : "
+            divCol1.appendChild(p)
+            
+            let divCol2 = document.createElement('div')
+            divCol2.classList.add('col-lg-6', 'col-md-12', 'mt-2')
+            divRow.appendChild(divCol2)
+
+            let price = document.createElement("p")
+            price.innerHTML = `Rp. ${object[key].price / 1000}.000`
+            divCol2.appendChild(price)
+
+            //// Quantity
+            divRow = document.createElement('div')
+            divRow.classList.add('row')
+            divCard.appendChild(divRow)
+
+            divCol1 = document.createElement('div')
+            divCol1.classList.add('col-lg-6', 'col-md-12', 'mt-2')
+            divRow.appendChild(divCol1)
+
+            p = document.createElement("p")
+            p.innerHTML = "Quantity     : "
+            divCol1.appendChild(p)
+            
+            divCol2 = document.createElement('div')
+            divCol2.classList.add('col-lg-6', 'col-md-12', 'mt-2')
+            divRow.appendChild(divCol2)
+
+            price = document.createElement("p")
+            price.innerHTML = object[key].quantity
+            p.classList.add('qty')
+            // p.setAttribute('id_qty', i)
+            divCol2.appendChild(price)
+
+            ////Button Quantity
+            
+            // let divButton = document.createElement('div')
+            // divButton.classList.add('row')
+            // divCard.appendChild(divButton)
+
+            // console.log(divButton)
+
+            // let divCol = document.createElement('div')
+            // divCol.classList.add('col-lg-6', 'col-md-12', 'mb-4')
+            // divButton.appendChild(divCol)
+
+            // let button = document.createElement('button')
+            // button.type = button
+            // button.classList.add("btn-sm", "btn-danger")
+            // button.innerHTML = '-'
+            // // button.setAttribute("id_plus", i)
+            // divCol.appendChild(button)
+
+            // divCol = document.createElement('div')
+            // divCol.classList.add('col-lg-6', 'col-md-12', 'mb-4')
+            // divButton.appendChild(divCol)
+
+            // button = document.createElement('button')
+            // button.type = button
+            // button.classList.add("btn-sm", "btn-primary")
+            // button.innerHTML = '+'
+            // divCol.appendChild(button)
+            
+            cartList.appendChild(divCart)
+        }
+        
+        /// Button Order
+
+        let divButton = document.createElement('div')
+        divButton.classList.add('row')
+        
+        console.log(divButton)
+        
+        let divCol = document.createElement('div')
+        divCol.classList.add('col-lg-6', 'col-md-12', 'mb-4')
+        divButton.appendChild(divCol)
+        
+        
+        let button = document.createElement('button')
+        button.type = button
+        button.classList.add("btn-sm", "btn-dark")
+        button.innerHTML = 'Delete'
+        button.addEventListener('click', deleteOrder)
+        divCol.appendChild(button)
+        
+        divCol = document.createElement('div')
+        divCol.classList.add('col-lg-6', 'col-md-12', 'mb-4')
+        divButton.appendChild(divCol)
+        
+        button = document.createElement('button')
+        button.type = button
+        button.classList.add("btn-sm", "btn-primary")
+        button.innerHTML = 'Order'
+        divCol.appendChild(button)
+        
+        cartList.appendChild(divButton)
+           
     }
 }
 
@@ -189,13 +336,13 @@ function generateTransaction() {
 function generateHome() {
     mainContainer.style.display = 'block'
     productContainer.style.display = 'block'
+    cartContainer.style.display = 'none'
     generateProduct(listCake)
 }
 
 generateProduct(listCake)
 // Menampilkan produk kue
 function generateProduct(data){
-    
 
     productContainer.innerHTML = ''
     for (let i = 0; i < data.length; i+=3){
@@ -222,6 +369,7 @@ function generateProduct(data){
             img.src = data[j].image
             img.classList.add("card-img-top", "img-box")
             divCard.appendChild(img)
+
             
             let divBody = document.createElement('div')
             divBody.classList.add("card-body")
@@ -246,6 +394,7 @@ function generateProduct(data){
             button.classList.add("btn", "btn-primary")
             button.addEventListener("click", function () {
                 addToCart(data[j])
+                alert(`You have added ${data[j].name} 1pcs`)
             })
 
             button.innerHTML = "Add to Cart"
@@ -263,13 +412,17 @@ function generateProduct(data){
 }
     
 
-// function generateCart(cart) {
-    
-// }
 
-// function addToCart() {
-//     // let cart = 
+function plusQuantity(params) {
+    
+}
 
+function minusQuantity(params) {
     
-    
-// }
+}
+
+function deleteOrder(event){
+    generateHome()
+    alert('You have delete your order')
+    listCart = {}
+}

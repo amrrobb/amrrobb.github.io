@@ -5,11 +5,9 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
-
 nav li {
     font-weight: 600;
 }
-
 
 .card .img-box{
     width: 100%;
@@ -24,3 +22,6 @@ nav li {
     padding: auto;
 }
 
+#card-list .row p{
+    margin-bottom: 0.25em;
+}

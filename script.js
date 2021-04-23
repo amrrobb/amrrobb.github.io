@@ -125,8 +125,86 @@ let productContainer    = document.getElementById('product-container')
 let mainContainer       = document.getElementById("main-container")
 let cartContainer       = document.getElementById("cart-container")
 let cartList            = document.getElementById("cart-list")
+let aboutUs             = document.getElementById('about-us')
+
+aboutUs.addEventListener('click', about)
+
+// mainContainer.display = 'none'
 ////////////////////////////
 // Function 
+
+function about() {
+    cartContainer.innerHTML = ''
+    // productContainer.innerHTML = ''
+    productContainer.innerHTML = `<div class="p-5 text-center" style="background-color: #f4f4f4; height: 80vh">
+    <div class="d-flex justify-content-center align-items-center h-100">
+        <div class="text-black">
+            <h1 class="mb-3">MEET OUR TEAM</h1>
+            <h4 class="mb-3">We are all very different. We were born in different cities, at different times, we
+                love different music, food, movies. But we have something that unites us all. It is our hobbies.
+                We are its heart. We are not just a team, we are a family.</h4>
+        </div>
+    </div>
+</div>
+
+<div class="container"></div>
+<section class="text-center mt-4">
+    <!-- Card -->
+    <div class="row">
+        <!-- Card -->
+        <div class="col-lg-3 col-md-12 mb-4">
+            <div class="card">
+                <img src="./Profile/ammar.png" class="card-img-top" alt="..." />
+                <div class="card-body">
+                    <h5 class="card-title">I'm Ammar Robbani</h5>
+                    <p class="card-text" style="opacity: 70%;">
+                        Hi, i'm full-stuck engineer
+                    </p>
+         
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-12 mb-4">
+            <div class="card">
+                <img src="./Profile/agam.jpg" class="card-img-top" alt="..." />
+                <div class="card-body">
+                    <h5 class="card-title">I'm Agam</h5>
+                    <p class="card-text" style="opacity: 70%;">
+                        I like doing UI & UX things! I know my skills and experience are still few, but I am confident in my ability to learn and adapt
+                    </p>
+        
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-12 mb-4">
+            <div class="card">
+                <img src="/img/10.jpg" class="card-img-top" alt="..." />
+                <div class="card-body">
+                    <h5 class="card-title">I'm Hilman</h5>
+                    <p class="card-text" style="opacity: 70%;">
+                        Some quick example text to build on the card title and make up the bulk of the
+                        card's content.
+                    </p>
+                 
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-12 mb-4">
+            <div class="card">
+                <img src="/img/10.jpg" class="card-img-top" alt="..." />
+                <div class="card-body">
+                    <h5 class="card-title">I'm Prayogi</h5>
+                    <p class="card-text" style="opacity: 70%;">
+                        Some quick example text to build on the card title and make up the bulk of the
+                        card's content.
+                    </p>
+                </div>
+            </div>
+        </div>  
+    </div>
+</section>`
+    
+}
 
 // Menambah kue ke dalam cart
 function addToCart(object) {
@@ -279,7 +357,7 @@ function generateCart() {
 
             // button = document.createElement('button')
             // button.type = button
-            // button.classList.add("btn-sm", "btn-primary")
+            // button.classList.add("btn-sm", "btn-secondary")
             // button.innerHTML = '+'
             // divCol.appendChild(button)
             
@@ -300,7 +378,7 @@ function generateCart() {
         
         let button = document.createElement('button')
         button.type = button
-        button.classList.add("btn-sm", "btn-dark")
+        button.classList.add("btn-sm", "btn-secondary", 'btn-lg')
         button.innerHTML = 'Delete'
         button.addEventListener('click', deleteOrder)
         divCol.appendChild(button)
@@ -311,7 +389,7 @@ function generateCart() {
         
         button = document.createElement('button')
         button.type = button
-        button.classList.add("btn-sm", "btn-primary")
+        button.classList.add("btn-sm", "btn-dark", 'btn-lg')
         button.innerHTML = 'Order'
         divCol.appendChild(button)
         
@@ -391,7 +469,7 @@ function generateProduct(data){
             
             let button = document.createElement('button')
             button.type = 'button'
-            button.classList.add("btn", "btn-primary")
+            button.classList.add("btn", "btn-dark")
             button.addEventListener("click", function () {
                 addToCart(data[j])
                 alert(`You have added ${data[j].name} 1pcs`)
